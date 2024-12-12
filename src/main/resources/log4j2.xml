@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <!-- RollingFile Appender -->
+        <RollingFile name="RollingFile" fileName="logs/institution-service.log"
+                     filePattern="logs/subscription-service-%d{yyyy-MM-dd}-%i.log.zip">
+            <PatternLayout pattern="%d{yyyy-MM-dd hh:mm:ss.SSS} %highlight{%p}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white} [%t] %C{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- RollingFile Appender Error -->
+        <RollingFile name="RollingFileError" fileName="logs/institution-service-error.log"
+                     filePattern="logs/subscription-service-error-%d{yyyy-MM-dd}-%i.log.zip">
+            <PatternLayout pattern="%d{yyyy-MM-dd hh:mm:ss.SSS} %highlight{%p}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white} [%t] %C{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- Console Appender for Root Logger -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%d %highlight{%p}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white} [%t] %C{1.} - %m%n"/>
+        </Console>
+
+        <!-- Console Appender for Specific Package -->
+        <Console name="PackageConsole" target="SYSTEM_OUT" follow="true">
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %highlight{%p}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white} [%t] %C{1.} - %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="RollingFile" level="INFO"/>
+            <AppenderRef ref="RollingFileError" level="ERROR"/>
+        </Root>
+
+        <!-- Logger for a Specific Package -->
+        <Logger name="com.itg.institution" level="DEBUG" additivity="false">
+            <AppenderRef ref="PackageConsole" level="DEBUG"/>
+            <AppenderRef ref="RollingFile" level="DEBUG"/>
+            <AppenderRef ref="RollingFileError" level="ERROR"/>
+        </Logger>
+    </Loggers>
+</Configuration>

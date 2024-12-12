@@ -1,0 +1,28 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:itg
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: 12345
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+
+logging:
+  config: src/main/resources/log4j2.xml
+  file:
+    name: ../logs/institution-service.log
+
+hash:
+  privateKey: MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAodnRee+dj5bqJ84eu5FC23hgP2rsrCLLKd+buWZAoUkKeA/l+zfYdiaAnhNZ0/Z/LtfTyLNMgNd8P9ZSF0YkuwIDAQABAkA9UgdZiX1Kr8Tbe+6M5gZMnJjqrhopRa1vmfaoEaOe9zBr5IZCnikR4Za3885hMwCNuPzBBx3BKnNU1Vo/aiRBAiEA4OIQu9sRedPy74rG96CRU54473uYOPNH0kgI8E8+uzECIQC4Pv2Da4MvOi+vFSDPRXcCW7bD3Y0+Eab1rBPpnpQLqwIgJyYTxbBIZY4JP7xIEPnJ8uWbgc1hXaC0gx35OGSDRjECIFWRg6HWe82iQ2UX9e3tgBELUT10FtXd0uHEMldMu8sTAiEA1bNsktjh6jyZU3SdigWfcetICAuH/rJWm1zda98L+Ks=
+  jwtSecret: MLtkNI5oiF9L+NSncn3wZ3OZxfpyyfmNLacIfakaPe52dGEOiVLEBeaqCgvNLIrnVrclVkhwFiSrdoEpATOrj9BFFI96wiX7TqaEihRc4WU=
+  jwtExpiration: 600
+  refreshExpiration: 1000

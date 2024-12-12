@@ -63,7 +63,7 @@ public class JwtTokenProvider
             {
                 return false;
             }
-            Optional<LoginEntity> loginEntityOptional = loginRepository.findByAccessToken(token);
+            Optional<LoginEntity> loginEntityOptional = loginRepository.findFirstByAccessTokenOrderByIdDesc(token);
             if(loginEntityOptional.isEmpty())
             {
                 return false;
@@ -108,7 +108,7 @@ public class JwtTokenProvider
             {
                 return false;
             }
-            Optional<LoginEntity> loginEntityOptional = loginRepository.findByRefreshToken(token);
+            Optional<LoginEntity> loginEntityOptional = loginRepository.findFirstByRefreshTokenOrderByIdDesc(token);
             if(loginEntityOptional.isEmpty())
             {
                 return false;

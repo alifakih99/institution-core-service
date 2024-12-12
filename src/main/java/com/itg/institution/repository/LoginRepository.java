@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface LoginRepository extends JpaRepository<LoginEntity, Long>
 {
-    Optional<LoginEntity> findByAccessToken(String accessToken);
+    Optional<LoginEntity> findFirstByAccessTokenOrderByIdDesc(String accessToken);
 
     Optional<LoginEntity> findFirstByUserAndExpiredAtAfterOrderByIdDesc(UserEntity userEntity, LocalDateTime expiredAt);
 
-    Optional<LoginEntity> findByRefreshToken(String refreshToken);
+    Optional<LoginEntity> findFirstByRefreshTokenOrderByIdDesc(String refreshToken);
 }

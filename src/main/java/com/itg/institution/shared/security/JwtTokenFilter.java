@@ -59,7 +59,7 @@ public class JwtTokenFilter extends OncePerRequestFilter
         catch (Exception e)
         {
             log.error("Error on doFilterInternal Exception, {}", e.getMessage());
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
 
